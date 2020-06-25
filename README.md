@@ -1,2 +1,2 @@
 # Python
- Repositorio para projetos grnades em python
+ Repositorio para projetos grandes em python
