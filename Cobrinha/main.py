@@ -4,6 +4,17 @@ import sys
 class Retangulos_Brancos(pygame.Rect):
     def __init__(self, pos, tam):
         super().__init__(pos, tam)
+        self.direcao = 'cima'
+
+    def mover(self):
+        if self.direcao == 'cima':
+            self.y -= 5
+        elif self.direcao == 'baixo':
+            self.y += 5
+        elif self.direcao == 'direita':
+            self.x += 5
+        elif self.direcao == 'esquerda':
+            self.x -= 5
 
 
 class Cobra:
@@ -16,6 +27,10 @@ class Cobra:
     def mostrar(self):
         for c in self.partes:
             pygame.draw.rect(self.tela, (0, 0, 0), c)
+
+    def andar(self):
+        for c in self.partes:
+            c.mover()
 
 
 pygame.init()
@@ -34,7 +49,7 @@ while True:
     tela.fill((255, 255, 255))
 
     rec.mostrar()
-
+    rec.andar()
 
 
 
