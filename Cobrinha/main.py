@@ -46,7 +46,7 @@ class Cobra:
         self.partes = []
         self.posx, self.posy = 0, 0
         for c in range(0, 5):
-            self.partes.append(Retangulos_Brancos([200, 200+20*c], [10, 10]))
+            self.partes.append(Retangulos_Brancos([190, 190+15*c], [15, 15]))
 
     def mostrar(self):
         for c in self.partes:
