@@ -1,5 +1,11 @@
 import pygame
 import sys
+from random import randint
+
+
+def sair():
+    pygame.quit()
+    sys.exit()
 
 
 def muda_lugar(x, y, dir, obj):
@@ -16,21 +22,23 @@ def direcoes_opostas(dir1, dir2):
             return True
     return False
 
+
 class Retangulos_Brancos(pygame.Rect):
-    def __init__(self, pos, tam):
+    def __init__(self, pos, tam, dir):
         super().__init__(pos, tam)
-        self.direcao = 'cima'
+        self.direcao = dir
         self.lugares_mudar = []
+        self.velocidade = 5
 
     def mover(self):
         if self.direcao == 'cima':
-            self.y -= 5
+            self.y -= self.velocidade
         elif self.direcao == 'baixo':
-            self.y += 5
+            self.y += self.velocidade
         elif self.direcao == 'direita':
-            self.x += 5
+            self.x += self.velocidade
         elif self.direcao == 'esquerda':
-            self.x -= 5
+            self.x -= self.velocidade
 
     def verifica_direcao(self):
         if len(self.lugares_mudar) > 0:
@@ -46,7 +54,7 @@ class Cobra:
         self.partes = []
         self.posx, self.posy = 0, 0
         for c in range(0, 5):
-            self.partes.append(Retangulos_Brancos([190, 190+15*c], [15, 15]))
+            self.partes.append(Retangulos_Brancos([190, 190+15*c], [15, 15], 'cima'))
 
     def mostrar(self):
         for c in self.partes:
@@ -69,6 +77,18 @@ class Cobra:
             muda_lugar(self.posx, self.posy, 'esquerda', self.partes)
 
 
+class Maca:
+    def __init__(self, tela):
+        self.tela = tela
+        x, y = randint(0, 38), randint(0, 38)
+        self.ret = pygame.Rect([10*x, 10*y], [15, 15])
+
+    def mostrar(self):
+        pygame.draw.rect(self.tela, [255, 0, 0], self.ret)
+
+    def mudar_pos(self):
+        self.ret.x = 10*randint(0, 38)
+        self.ret.y = 10*randint(0, 38)
 
 
 pygame.init()
@@ -78,20 +98,42 @@ pygame.display.set_caption('Jogo da Cobra')
 tempo = pygame.time.Clock()
 
 rec = Cobra(tela)
+maca = Maca(tela)
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
+            sair()
         if event.type == pygame.KEYDOWN:
             rec.mudar_direcoes(event)
     tela.fill((255, 255, 255))
 
+    if maca.ret.colliderect(rec.partes[0]):
+        maca.mudar_pos()
+        direc = rec.partes[-1].direcao
+        x = rec.partes[-1].x
+        y = rec.partes[-1].y
+        if direc == 'cima':
+            y += 15
+        elif direc == 'baixo':
+            y -= 15
+        elif direc == 'direita':
+            x -= 15
+        elif direc == 'esquerda':
+            x += 15
+        rec.partes.append(Retangulos_Brancos([x, y], [15, 15], direc))
+        rec.partes[-1].lugares_mudar = rec.partes[-2].lugares_mudar.copy()
+
     rec.mostrar()
     rec.andar()
-
+    maca.mostrar()
 
 
     pygame.display.update()
     tempo.tick(30)
+    for n in range(len(rec.partes)):
+        if n != 1 and n != 0:
+            if rec.partes[0].colliderect(rec.partes[n]):
+                sair()
+    if rec.partes[0].x < 0 or rec.partes[0].x > 385 or rec.partes[0].y < 0 or rec.partes[0].y > 385:
+        sair()
