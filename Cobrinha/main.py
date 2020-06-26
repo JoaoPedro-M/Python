@@ -6,6 +6,16 @@ def muda_lugar(x, y, dir, obj):
     for c in obj:
         c.lugares_mudar.append([x, y, dir])
 
+
+def direcoes_opostas(dir1, dir2):
+    opostos = [['cima', 'baixo'], ['direita', 'esquerda']]
+    for c in opostos:
+        if dir1 == c[0] and dir2 == c[1]:
+            return True
+        elif dir1 == c[1] and dir2 == c[0]:
+            return True
+    return False
+
 class Retangulos_Brancos(pygame.Rect):
     def __init__(self, pos, tam):
         super().__init__(pos, tam)
@@ -25,7 +35,8 @@ class Retangulos_Brancos(pygame.Rect):
     def verifica_direcao(self):
         if len(self.lugares_mudar) > 0:
             if self.x == self.lugares_mudar[0][0] and self.y == self.lugares_mudar[0][1]:
-                self.direcao = self.lugares_mudar[0][2]
+                if not direcoes_opostas(self.direcao, self.lugares_mudar[0][2]):
+                    self.direcao = self.lugares_mudar[0][2]
                 self.lugares_mudar.pop(0)
 
 
