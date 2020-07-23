@@ -2,6 +2,7 @@ from tkinter import *
 import webbrowser
 from time import sleep
 from functools import partial
+from tkinter.ttk import *
 
 
 def destroir(bts):
@@ -25,6 +26,7 @@ def blog():
         cont += 1
     bts.append(Button(janela, text='<-- Voltar', command=tela_inicial))
     bts[-1].pack(expand=1, fill='both')
+    janela.title('Blogs')
 
 
 def tela_inicial():
@@ -36,6 +38,7 @@ def tela_inicial():
     bts[1].pack(expand=1, fill='both')
     bts.append(Button(janela, text='Site', command=site))
     bts[2].pack(expand=1, fill='both')
+    janela.title('Sites da Escola')
 
 
 def zoom():
@@ -49,6 +52,7 @@ def zoom():
         cont += 1
     bts.append(Button(janela, text='<-- Voltar', command=tela_inicial))
     bts[-1].pack(expand=1, fill='both')
+    janela.title('Reuniões Zoom')
 
 
 def site():
@@ -89,7 +93,8 @@ ZOOM = {
     'Matemática': r'https://zoom.us/j/3170953381?pwd=RktsRUZLNTMvM0s3bURXaTVJYnFrUT09'}
 bts = []
 tela_inicial()
-
-janela.geometry('400x600+200+200')
-janela.title('Sites da Escola')
+janela.iconbitmap('imagem.ico')
+janela.geometry('600x700+500+100')
+janela.style = Style()
+janela.style.theme_use('default')
 janela.mainloop()
