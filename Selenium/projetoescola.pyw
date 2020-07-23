@@ -3,6 +3,7 @@ import webbrowser
 from time import sleep
 from functools import partial
 from tkinter.ttk import *
+import sys
 
 
 def destroir(bts):
@@ -38,6 +39,8 @@ def tela_inicial():
     bts[1].pack(expand=1, fill='both')
     bts.append(Button(janela, text='Site', command=site))
     bts[2].pack(expand=1, fill='both')
+    bts.append(Button(janela, text='Sair', command=sair))
+    bts[3].pack(expand=1, fill='both')
     janela.title('Sites da Escola')
 
 
@@ -57,6 +60,11 @@ def zoom():
 
 def site():
     abrir_site('http://www.colegiosion.com.br/')
+
+
+def sair():
+    janela.destroy()
+    sys.exit()
 
 
 janela = Tk()
@@ -96,5 +104,5 @@ tela_inicial()
 janela.iconbitmap('imagem.ico')
 janela.geometry('600x700+500+100')
 janela.style = Style()
-janela.style.theme_use('default')
+janela.style.theme_use('vista')
 janela.mainloop()
