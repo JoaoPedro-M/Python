@@ -1,9 +1,9 @@
 from tkinter import *
 import webbrowser
-from time import sleep
 from functools import partial
 from tkinter.ttk import *
 import sys
+import os
 
 
 def destroir(bts):
@@ -107,7 +107,7 @@ ZOOM = {
     'Matemática': r'https://zoom.us/j/3170953381?pwd=RktsRUZLNTMvM0s3bURXaTVJYnFrUT09'}
 bts = []
 tela_inicial()
-janela.iconbitmap('imagem.ico')
+janela.iconbitmap(os.path.join('images', 'imagem.ico'))
 janela.geometry('600x700+500+100')
 janela.style = Style()
 janela.style.theme_use('vista')
