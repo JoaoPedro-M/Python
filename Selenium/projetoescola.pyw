@@ -30,6 +30,10 @@ def blog():
     janela.title('Blogs')
 
 
+def educacional():
+    abrir_site('http://www.educacional.com.br/ava/Caminhos/home/CaminhosAluno')
+
+
 def tela_inicial():
     global bts
     bts = destroir(bts)
@@ -39,8 +43,10 @@ def tela_inicial():
     bts[1].pack(expand=1, fill='both')
     bts.append(Button(janela, text='Site', command=site))
     bts[2].pack(expand=1, fill='both')
-    bts.append(Button(janela, text='Sair', command=sair))
+    bts.append(Button(janela, text='Educacional', command=educacional))
     bts[3].pack(expand=1, fill='both')
+    bts.append(Button(janela, text='Sair', command=sair))
+    bts[4].pack(expand=1, fill='both')
     janela.title('Sites da Escola')
 
 
@@ -73,7 +79,7 @@ BLOGS = {'Química': r'http://blog2.educacional.com.br/beatrizquim2em',
          'Biologia': r'http://blog2.educacional.com.br/andrebio2em/',
          'Física': r'http://blog2.educacional.com.br/niltonfis2em',
          'Matemática': r'http://blog2.educacional.com.br/marcomat2em',
-         'História': r'http://blog2.educacional.com.br/marcellofonseca/',
+         'História': r'http://blog2.educacional.com.br/marcellohist2em',
          'Geografia': r'http://blog2.educacional.com.br/betegeo2em',
          'Redação': r'http://blog2.educacional.com.br/dafnereda2em',
          'Potuguês': r'http://blog2.educacional.com.br/fernandaport2em',
