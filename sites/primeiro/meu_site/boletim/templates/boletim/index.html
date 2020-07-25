@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Faculdade Bibocas</title>
+</head>
+<body>
+    <h1>Faculadade Bibocas!</h1>
+    <h2>Notas do André</h2>
+    <ul>
+    {% for mat in materia %}
+        <li>{{mat.nome}}: {{mat.nota}}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
