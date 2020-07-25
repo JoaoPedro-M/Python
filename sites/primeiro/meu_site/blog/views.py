@@ -6,5 +6,5 @@ from .models import *
 
 
 def index(request):
-    return render(request, 'blog/index.html')
-
+    context = {'lista_de_posts': Post.objects.all()}
+    return render(request, 'blog/index.html', context=context)

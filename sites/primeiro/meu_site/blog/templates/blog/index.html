@@ -2,10 +2,13 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Começo</title>
+    <title>Blogs</title>
 </head>
 <body>
-    Olá!
-    <p>Como você tá?</p>
+    <ul>
+    {% for post in lista_de_posts %}
+        <li>{{ post.header }} <p>{{ post.text }}</p></li>
+    {% endfor %}
+    </ul>
 </body>
 </html>
