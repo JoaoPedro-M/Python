@@ -1,0 +1,37 @@
+{% extends 'comentarios/base.html '%}
+
+{% block title%}Perguntas e Respostas{% endblock%}
+
+{% block content %}
+    
+    <h1>Perguntas da vida</h1>
+
+    <p>
+        <ul>
+        'Aqui vão aparecer 5 perguntas e algumas respostas' <br>
+        {% for x in y %}
+            <li>{{x}} </li>
+            {% for n in x.respostas_set.all %}
+                {{n}} <br>
+            {% endfor %}
+        {% endfor %}
+        </ul>
+    </p>
+    <p>
+        Faça uma pergunta: <br>
+        'botao'
+    
+    </p>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
